@@ -1,0 +1,33 @@
+@model BeeFC.Models.Product
+@{
+    ViewData["Title"] = "Chi tiết sản phẩm";
+    // Map CategoryId sang tên danh mục
+    var categories = new[] {
+        new { Id = 1, Name = "Gà Rán" },
+        new { Id = 2, Name = "Burger" },
+        new { Id = 3, Name = "Mì Ý" },
+        new { Id = 4, Name = "Tráng miệng" },
+        new { Id = 5, Name = "Đồ Uống" }
+    };
+    var categoryDict = categories.ToDictionary(c => c.Id, c => c.Name);
+}
+<h2>@ViewData["Title"]</h2>
+<div class="card" style="max-width: 600px;">
+    <div class="row g-0">
+        <div class="col-md-4">
+            @if (!string.IsNullOrEmpty(Model.ImageUrl))
+            {
+                <img src="@Model.ImageUrl" class="img-fluid rounded-start" alt="@Model.Name" />
+            }
+        </div>
+        <div class="col-md-8">
+            <div class="card-body">
+                <h5 class="card-title">@Model.Name</h5>
+                <p class="card-text">@Model.Description</p>
+                <p class="card-text"><strong>Giá:</strong> @Model.Price.ToString("N0") ₫</p>
+                <p class="card-text"><strong>Loại:</strong> @categoryDict.GetValueOrDefault(Model.CategoryId, "")</p>
+                <a asp-action="Index" class="btn btn-secondary">Quay lại</a>
+            </div>
+        </div>
+    </div>
+</div>

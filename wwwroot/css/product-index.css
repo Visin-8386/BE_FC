@@ -1,0 +1,61 @@
+/* Product Index page custom styles */
+
+/* Carousel full width, no overflow */
+#newsCarousel {
+    width: 100%;
+    max-width: 100%;
+    overflow: hidden;
+}
+#newsCarousel .carousel-inner img {
+    height: 420px;
+    object-fit: cover;
+    width: 100%;
+}
+
+/* Responsive grid and product card */
+.product-item {
+    min-height: 370px;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+.product-img-wrap {
+    height: 200px;
+    background: #fffbe7;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.product-img-anim {
+    max-height: 180px;
+    max-width: 95%;
+    object-fit: contain;
+    display: block;
+    margin: auto;
+}
+.product-title-anim {
+    min-height: 48px;
+}
+
+/* Category pills */
+.category-pills .nav-link.active {
+    background: #ffc107;
+    color: #222;
+    font-weight: bold;
+}
+
+/* Toastr custom position for cart notification */
+#toast-container {
+    top: 70px !important;
+    right: 20px !important;
+}
+
+@media (max-width: 768px) {
+    #newsCarousel .carousel-inner img {
+        height: 220px;
+    }
+    .product-img-wrap {
+        height: 120px;
+    }
+}

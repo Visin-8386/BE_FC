@@ -1,0 +1,67 @@
+@{
+    ViewData["Title"] = "Thanh toán";
+}
+<h2 class="mb-4">Thanh toán đơn hàng</h2>
+<div class="row">
+    <div class="col-lg-8">
+        <form id="checkoutForm">
+            <div class="mb-3">
+                <label for="customerName" class="form-label">Họ tên</label>
+                <input type="text" class="form-control" id="customerName" required />
+            </div>
+            <div class="mb-3">
+                <label for="customerPhone" class="form-label">Số điện thoại</label>
+                <input type="text" class="form-control" id="customerPhone" required />
+            </div>
+            <div class="mb-3">
+                <label for="customerAddress" class="form-label">Địa chỉ nhận hàng</label>
+                <textarea class="form-control" id="customerAddress" rows="2" required></textarea>
+            </div>
+            <div class="mb-3">
+                <label for="note" class="form-label">Ghi chú</label>
+                <textarea class="form-control" id="note" rows="2"></textarea>
+            </div>
+            <button type="submit" class="btn btn-success">Xác nhận đặt hàng</button>
+            <a asp-action="Cart" class="btn btn-secondary ms-2">Quay lại giỏ hàng</a>
+        </form>
+    </div>
+    <div class="col-lg-4">
+        <div class="card p-3">
+            <h5 class="mb-3">Tóm tắt đơn hàng</h5>
+            <div id="checkoutSummary">
+                <!-- Tổng tiền sẽ render bằng JS -->
+            </div>
+        </div>
+    </div>
+</div>
+@section Scripts {
+<script src="/js/product-index.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+<script>
+$(function() {
+    renderCart();
+    updateCheckoutSummary();
+    $('#checkoutForm').on('submit', function(e) {
+        e.preventDefault();
+        if (cart.length === 0) {
+            toastr.warning('Giỏ hàng trống!');
+            return;
+        }
+        toastr.success('Đặt hàng thành công! (Demo)');
+        cart = [];
+        localStorage.setItem('cart', JSON.stringify(cart));
+        renderCart();
+        updateCheckoutSummary();
+    });
+});
+function updateCheckoutSummary() {
+    let total = 0;
+    cart.forEach(x => {
+        let prod = products.find(p => p.id == x.id);
+        if(prod) total += (prod.price || 0) * x.qty;
+    });
+    $('#checkoutSummary').html(`<div class='fw-bold'>Tổng tiền: <span class='text-danger'>${total.toLocaleString()} ₫</span></div>`);
+}
+</script>
+}

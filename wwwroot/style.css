@@ -1,0 +1,261 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+  }
+  
+  .header {
+    background-color: #333;
+  }
+  
+  .nav ul {
+    display: flex;
+    list-style: none;
+    justify-content: center;
+  }
+  
+  .nav li {
+    margin: 0 15px;
+  }
+  
+  .nav a {
+    color: #fff;
+    text-decoration: none;
+    padding: 15px;
+    display: block;
+  }
+  
+  .nav a:hover {
+    background-color: #444;
+  }
+  
+  .price {
+    color: #e91e63;
+    font-weight: bold;
+  }
+  
+  .card {
+    transition: transform 0.3s, box-shadow 0.3s;
+  }
+  
+  .card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
+  
+  #search, #categoryFilter, #priceFilter {
+    margin-bottom: 15px;
+  }
+  
+  .navbar-brand {
+    font-family: 'Pacifico', cursive;
+    font-size: 1.5rem;
+    color: #ffc107 !important;
+  }
+
+  .product-fade-in {
+    animation: fadeInUp 0.7s;
+  }
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(40px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  #loadingSpinner {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 120px;
+  }
+
+  .product-hover-effect {
+    transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s;
+    border: 2px solid #ddd;
+  }
+  .product-hover-effect.active {
+    transform: scale(1.07) rotate(-1deg);
+    box-shadow: 0 8px 32px rgba(255,193,7,0.18);
+    border-color: #ffc107;
+    z-index: 2;
+  }
+  
+  .product-img-wrap {
+    overflow: hidden;
+    border-radius: 8px 8px 0 0;
+  }
+  .product-img-anim {
+    transition: transform 0.3s;
+  }
+  .product-hover-effect.active .product-img-anim {
+    transform: scale(1.08) rotate(2deg);
+  }
+  .img-shake {
+    animation: shake 0.4s;
+  }
+  @keyframes shake {
+    0% { transform: scale(1.08) rotate(2deg) translateX(0);}
+    20% { transform: scale(1.08) rotate(2deg) translateX(-4px);}
+    40% { transform: scale(1.08) rotate(2deg) translateX(4px);}
+    60% { transform: scale(1.08) rotate(2deg) translateX(-2px);}
+    80% { transform: scale(1.08) rotate(2deg) translateX(2px);}
+    100% { transform: scale(1.08) rotate(2deg) translateX(0);}
+  }
+  
+  .product-title-anim {
+    transition: text-shadow 0.3s, color 0.3s;
+  }
+  .title-pop {
+    color: #ffc107 !important;
+    text-shadow: 0 2px 8px #fffbe7, 0 0 2px #ffc107;
+  }
+
+  .carousel {
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 24px rgba(255,193,7,0.08);
+    margin-bottom: 24px;
+  }
+  .carousel-inner img {
+    border-radius: 12px;
+  }
+  
+  @media (max-width: 768px) {
+    .carousel-inner img {
+      max-height: 180px;
+    }
+  }
+
+  .gradient-bg {
+    background: linear-gradient(135deg, #fffbe7 0%, #ffe082 100%);
+    min-height: 100vh;
+  }
+
+  #productList .card {
+    cursor: pointer;
+    border-radius: 16px;
+    box-shadow: 0 2px 12px rgba(255,193,7,0.08);
+    background: #fff;
+    border: none;
+    margin-bottom: 0;
+  }
+  #productList .card:hover {
+    box-shadow: 0 8px 32px rgba(255,193,7,0.18);
+    border-color: #ffc107;
+    transform: scale(1.03);
+  }
+  #productList .product-img-wrap {
+    background: #fffbe7;
+    border-radius: 16px 16px 0 0;
+    padding: 12px;
+    min-height: 180px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  #productList .card-title {
+    font-size: 1.2rem;
+    font-weight: bold;
+  }
+  #productList .text-danger {
+    font-size: 1.1rem;
+  }
+
+  /* Nav pills danh mục */
+  .category-pills .nav-link {
+    color: #333;
+    background: #fffbe7;
+    border-radius: 20px;
+    margin: 0 4px;
+    font-weight: 500;
+    transition: background 0.2s, color 0.2s;
+    border: 1px solid #ffe082;
+  }
+  .category-pills .nav-link.active,
+  .category-pills .nav-link:hover {
+    background: #ffc107;
+    color: #fff;
+    border-color: #ffc107;
+  }
+  
+  /* Sản phẩm dạng lưới ngang */
+  #productListRow {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 24px;
+    margin-top: 12px;
+  }
+  #productListRow > div {
+    flex: 1 1 calc(33.333% - 24px);
+    max-width: calc(33.333% - 24px);
+    min-width: 260px;
+    margin-bottom: 24px;
+  }
+  @media (max-width: 992px) {
+    #productListRow > div {
+      flex-basis: calc(50% - 24px);
+      max-width: calc(50% - 24px);
+    }
+  }
+  @media (max-width: 600px) {
+    #productListRow > div {
+      flex-basis: 100%;
+      max-width: 100%;
+    }
+  }
+  
+  /* Card sản phẩm */
+  #productListRow .card {
+    cursor: pointer;
+    border-radius: 18px;
+    box-shadow: 0 2px 12px rgba(255,193,7,0.10);
+    background: #fff;
+    border: none;
+    margin-bottom: 0;
+    transition: box-shadow 0.3s, transform 0.3s;
+  }
+  #productListRow .card:hover {
+    box-shadow: 0 8px 32px rgba(255,193,7,0.18);
+    border-color: #ffc107;
+    transform: scale(1.04);
+  }
+  #productListRow .product-img-wrap {
+    background: #fffbe7;
+    border-radius: 18px 18px 0 0;
+    padding: 16px;
+    min-height: 180px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  #productListRow .card-title {
+    font-size: 1.2rem;
+    font-weight: bold;
+  }
+  #productListRow .text-danger {
+    font-size: 1.1rem;
+  }
+  
+  /* Sidebar nổi bật */
+  .card-header.bg-warning {
+    background: linear-gradient(90deg, #ffe082 60%, #fffbe7 100%) !important;
+    border-bottom: 1px solid #ffd54f;
+  }
+
+  .navbar.bg-dark {
+    background: linear-gradient(90deg, #ff6f91 0%, #ffc107 100%) !important;
+    border-bottom: 2px solid #ffc107;
+  }
